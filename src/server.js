@@ -56,6 +56,10 @@ controller.setupWebserver(process.env.PORT || 3001, (err, webserver) => {
   });
 });
 
+controller.on('outgoing_webhook', (bot, message) => {
+  bot.replyPublic(message, 'yeah yeah');
+});
+
 // example hello response
 controller.hears(['hello', 'hi', 'howdy', 'hola', 'hey'], ['direct_message', 'direct_mention', 'mention'], (bot, message) => {
   // bot.reply(message, 'Hello there!');
@@ -71,7 +75,6 @@ controller.hears(['hello', 'hi', 'howdy', 'hola', 'hey'], ['direct_message', 'di
     }
   });
 });
-
 
 controller.hears(['hungry', 'hi im hungry', 'food'], ['direct_message', 'direct_mention', 'mention'], (bot, message) => {
   bot.reply(message, 'Would you like food recommendations?');
