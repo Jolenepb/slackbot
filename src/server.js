@@ -90,7 +90,7 @@ controller.hears(['no', 'no im good', 'nah', 'no thank you'], ['direct_message',
   bot.reply(message, 'okay, Have a good day and be sure to come again!');
 });
 
-controller.hears(['icecream', 'ice cream', 'pizza', 'fries'], ['direct_message', 'direct_mention', 'mention'], (bot, message) => {
+controller.hears(['icecream', 'ice cream', 'corn', 'cheese', 'chips', 'tacos', 'fish', 'burger', 'pizza', 'fries'], ['direct_message', 'direct_mention', 'mention'], (bot, message) => {
   const term2 = message.match[0];
   const yelpClient = yelp.client(process.env.YELP_CLIENT_ID);
 
@@ -104,15 +104,9 @@ controller.hears(['icecream', 'ice cream', 'pizza', 'fries'], ['direct_message',
     name = response.jsonBody.businesses[0].name;
     rating = response.jsonBody.businesses[0].rating;
     imagee = response.jsonBody.businesses[0].image_url;
-    const response2 = `${name} \n ${rating} \n`;
-    const res = {
-      text: response2,
-      files: [{
-        url: imagee,
-        image: true,
-      }],
-    };
-    bot.reply(message, res);
+    const response2 = `You should try '${name}' \n Rated ${rating} stars \n ${imagee}`;
+
+    bot.reply(message, response2);
     // response.jsonBody.businesses.forEach((business) => {
     //   console.log(business.name);
     //   name = business.name;
